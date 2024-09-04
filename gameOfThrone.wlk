@@ -1,14 +1,26 @@
 object daenerys{
     const property artefactos = []
+    var property max = 2 
+    var property inventario = []
 
     method agarrar(objeto){
-        if (artefactos.size() < 2){
+        if (artefactos.size() < max){
         artefactos.add(objeto)            
         }
     }
 
-    method tiene() = artefactos
-    method todoTiene() = artefactos + rocaDragon.inventario()
+    
+    method llegoCastillo(){
+        rocaDragon.dejar()
+        artefactos.clear()
+    }
+
+    method muestro() = artefactos + rocaDragon.inventario()
+
+
+    method tiene(objeto) = artefactos.muestro().contains(objeto)
+
+
 }
 object espada {
 
@@ -32,24 +44,6 @@ object rocaDragon {
     
     method dejar(){
         inventario.addAll(daenerys.artefactos())
-        daenerys.artefactos().clear()
-    }
-
-}
-
-object todoTiene {
-    const property all = []
-
-    method todo(){
-        all.addAll(daenerys.artefactos())
-        all.addAll(rocaDragon.inventario())
-    } 
-
-
-    method siTiene(objeto) = all.contains(objeto)
-
-    method mostrarTodo() {
-        all.filter({all => all.todo()})
     }
 
 }
